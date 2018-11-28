@@ -68,7 +68,6 @@ int consulta_ArvLLRB(ArvLLRB *raiz, char* palavra){
     }
     return 0;
 }
-
 //Usarei a mesma função para tentar encontrar a palavra buscada. Resolvi não mexer na função que, aparentemnte, já está sendo usada.
 int QuantiaPalavra(ArvLLRB* raiz, char* palavra){
     if(raiz == NULL)

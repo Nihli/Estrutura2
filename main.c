@@ -27,7 +27,6 @@ int main(int argc, char *argv[ ]){
         //    indexer --freq N ARQUIVO
         strcpy(file_name,argv[3]);
         insertfromf(raiz,file_name);
-
     }
     if (opt==2){
         //    indexer --freq-word PALAVRA ARQUIVO

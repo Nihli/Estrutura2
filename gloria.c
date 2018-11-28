@@ -17,7 +17,6 @@ typedef struct palavra_repetida{
 	char reapword[1024];
 	int num;
 }repete;
-
 repete rewords[1244]; //vetor de letras repetidas
 
 // =================================
