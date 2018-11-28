@@ -5,7 +5,7 @@
 
 
 int main(int argc, char *argv[ ]){
-    int opt=0,t=0,n=0,i=0;
+/*    int opt=0,t=0,n=0,i=0;
     char file_name[50],file_name2[50],file_name3[50],file_name4[50],file_name5[50];
     char palavra[50];
     int vetor[99999];
@@ -41,31 +41,31 @@ int main(int argc, char *argv[ ]){
 
         strcpy(palavra,argv[2]);
             strcpy(file_name,argv[3]);
-            strcpy(file_name2,argv[4])
-            strcpy(file_name3,argv[5])
-            strcpy(file_name4,argv[6])
-            strcpy(file_name5,argv[7])
+            strcpy(file_name2,argv[4]);
+            strcpy(file_name3,argv[5]);
+            strcpy(file_name4,argv[6]);
+            strcpy(file_name5,argv[7]);
             PalavrAarqRel(raiz,palavra,file_name,file_name2,file_name3,file_name4,file_name5);
         }
-
+		return 0;
 
     }
+*/
+    while(opt!=87){
 
-   // while(opt!=87){
+        printf("Menu\n");
+        printf("1-Inserir Nodo na árvore.\n");
+        printf("2-Imprimir árvore.\n");
+        printf("3-Contar nós da árvore\n");
+        printf("4-Buscar a maior relevância duma palavra.\n");		//ALTERAÇÃO
+        printf("87-Sair.\n");
 
-    //    printf("Menu\n");
-    //    printf("1-Inserir Nodo na árvore.\n");
-    //    printf("2-Imprimir árvore.\n");
-    //    printf("3-Contar nós da árvore\n");
-    //    printf("4-Buscar a maior relevância duma palavra.\n");		//ALTERAÇÃO
-    //    printf("87-Sair.\n");
-
-     //   scanf("%d",&opt);
-     //   switch(opt){
-     //       case 1 :
-     //       printf("digite o nome do arquivo : \n");
-      //          scanf("%s",file_name);
-       //         insertfromf(raiz,file_name);
+        scanf("%d",&opt);
+        switch(opt){
+            case 1 :
+            printf("digite o nome do arquivo : \n");
+                scanf("%s",file_name);
+                insertfromf(raiz,file_name);
        //         break;
         //    case 2 :
          //       emOrdem_ArvLLRB(raiz,0);
@@ -88,15 +88,15 @@ int main(int argc, char *argv[ ]){
             //    scanf("%s",palavra);
             //    insere_ArvLLRB(raiz,palavra);
             //    break;
-        }
+ /*       }
 
 
     }
-  //  for(i=0; i< N; i++){
+ /* //  for(i=0; i< N; i++){
         //insere_ArvLLRB(raiz,val[i]);
 //    emOrdem_ArvLLRB(raiz,0);
 
-    printf("\n\n==========================\n\n");
+ //   printf("\n\n==========================\n\n");
    // remove_ArvLLRB(raiz,15);
    // emOrdem_ArvLLRB(raiz,0);
     //printf("\n\n==========================\n\n");

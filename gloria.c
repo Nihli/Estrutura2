@@ -3,7 +3,6 @@
 #include <string.h>
 #define RED 1
 #define BLACK 0
-#include "indexer.h"
 
 struct NO{
     char info[50];
@@ -14,13 +13,13 @@ struct NO{
 };
 typedef struct NO* ArvLLRB;
 
-/*typedef struct palavra_repetida{
+typedef struct palavra_repetida{
 	char reapword[1024];
 	int num;
 }repete;
 
-//repete rewords[1244]; //vetor de letras repetidas
-*/
+repete rewords[1244]; //vetor de letras repetidas
+
 // =================================
 // CRIAÇÃO DA ARVORE
 // =================================
@@ -146,7 +145,7 @@ struct NO* insereNO(struct NO* H, char* palavra, int *resp){
 
     if(strcmp(palavra, H->info)==0){ //compara se palavra == H->info
         *resp = 0;// Valor duplicado
-       // void repete_word(palavra);
+        //void repete_word(palavra);
         H->num++;
         }
     else{
@@ -172,7 +171,7 @@ struct NO* insereNO(struct NO* H, char* palavra, int *resp){
     return H;
 }
 
-/*int vetorDeMaiores(int vetor[20], int valor){
+int vetorDeMaiores(int vetor[20], int valor){
     int i;
     int aux;
     if (vetor[0]==NULL)
@@ -185,7 +184,7 @@ struct NO* insereNO(struct NO* H, char* palavra, int *resp){
         }
     }
 }
-*/
+
 
 
 int insere_ArvLLRB(ArvLLRB* raiz, char* palavra){
@@ -421,7 +420,7 @@ int insertfromf(ArvLLRB* raiz,char* file_name ){
    fclose(arq); //fechando
 	return contDePalavras;		//ALTERAÇÃO
 }
-/*
+
 void repete_word(char* palavra){
 int i=0,j;
 	for(j=0;j<i;j++){ //como eu faco esse for ??????????????????????????????????
@@ -432,7 +431,7 @@ int i=0,j;
 		rewords[i].num = rewords[i].num++;
 	}
 }
-*/
+
 void imprimeNmaiores(int *vetor, int n){
     int i;
 
@@ -441,13 +440,14 @@ void imprimeNmaiores(int *vetor, int n){
     }
 }
 
-/* int consulta_ArvNum(ArvLLRB *raiz,int t, int N, int *vetor){
+int consulta_ArvNum(ArvLLRB *raiz,int t, int N, int *vetor){
     printf("Oi!");
     int i;
     quickSort(vetor, 0,t-1);
     imprimeNmaiores(&vetor,N);
-}*/
 
+
+}
 
 int encherVetor(ArvLLRB *raiz, int H, int *vetor){
     if(raiz == NULL)
@@ -487,56 +487,170 @@ void quickSort(int *vetor, int inicio, int fim){
       quickSort(vetor, i, fim);
 }
 
-void PalavrAarqRel(ArvLLRB *raiz, char *palavra, char *arq1,char *arq2,char*arq3,char*arq4,char*arq5){
-    int i;   //ALTERAÇÃO
+////////////////////////////////////////////////////////////////////
+
+/*void rankingpalavras (ArvLLRB* raiz, int num){
+	int H =0;
+	int i=0, x=0;
+	int ver=0;
+	ArvLLRB no[num];
+	if(raiz == NULL) return;
+    if(*raiz != NULL){
+        posOrdem_ArvLLRB(&((*raiz)->esq),H+1);
+        posOrdem_ArvLLRB(&((*raiz)->dir),H+1);
+        for (i=0;i<num;i++){
+        	while (ver == 0){
+				if (raiz->num > no[i]->num){
+					for (x=num;x>num;x--) no[x] = no[x-1];
+					no[i]->num = raiz -> num;
+					no[i]->info = raiz -> info;
+					ver = 1;
+				}
+				else if( i==num) ver=1;
+			}
+		}
+    }
+    for (i=0;i<num;i++){
+    	printf ("Posição %d: Palavra %s, com %d usos.\n", i, no[i]->info, no[i]->num);
+	}
+}
+///////////////////////////////////////////////////////////////////
+*/
+int main(){
+    int opt=0,t=0,n=0, i, numpalavras;   //ALTERAÇÃO
 	double citacao;	//ALTERAÇÃo
 	double contDePalavras[5];  //ALTERAÇÃO
     double relevancia[5], val3;		//ALTERAÇÃO
-   // char arq1[50], arq2[50], arq3[50], arq4[50], arq5[50];
-   // char palavra[50];		//ALTERAÇÂO
+    char arq1[50], arq2[50], arq3[50], arq4[50], arq5[50];
+    char palavra[50];		//ALTERAÇÂO
+    char file_name[50];
+    int vetor[99999];
+    ArvLLRB * raiz = cria_ArvLLRB();
 
-    libera_ArvLLRB(raiz);
-    raiz = cria_ArvLLRB();
-    //printf ("Digite a palavra que quer: \n");
-    //scanf ("%s", &palavra);
-    //printf("digite o nome dos 5 arquivos : \n");
-    citacao = 0;
-   // scanf("%s",arq1);
-    contDePalavras[0] = insertfromf(raiz,arq1);
-    relevancia[0] = (double)QuantiaPalavra(raiz,palavra) / contDePalavras[0];
-    printf("Relevancia, multiplicada por 100.000: %f\n\n", relevancia[0]*100000 );
-    if ( relevancia [0] != 0 ) citacao ++;
-    libera_ArvLLRB(raiz);
-    raiz = cria_ArvLLRB();
-  //  scanf("%s",arq2);
-    contDePalavras[1] = insertfromf(raiz,arq2);
-    relevancia[1] = (double)QuantiaPalavra(raiz,palavra) / contDePalavras[1];
-    printf("Relevancia, multiplicada por 100.000: %f\n\n", relevancia[1]*100000 );
-    if ( relevancia [1] != 0 ) citacao ++;
-    libera_ArvLLRB(raiz);
-    raiz = cria_ArvLLRB();
-   // scanf("%s",arq3);
-    contDePalavras[2] = insertfromf(raiz,arq3);
-    relevancia[2] = (double)QuantiaPalavra(raiz,palavra) / contDePalavras[2];
-    printf("Relevancia, multiplicada por 100.000: %f\n\n", relevancia[2]*100000 );
-    if ( relevancia [2] != 0 ) citacao ++;
-    libera_ArvLLRB(raiz);
-    raiz = cria_ArvLLRB();
-  //  scanf("%s",arq4);
-    contDePalavras[3] = insertfromf(raiz,arq4);
-    relevancia[3] = (double)QuantiaPalavra(raiz,palavra) / contDePalavras[3];
-    printf("Relevancia, multiplicada por 100.000: %f\n\n", relevancia[3]*100000 );
-    if ( relevancia [3] != 0 ) citacao ++;
-    libera_ArvLLRB(raiz);
-    raiz = cria_ArvLLRB();
-  //  scanf("%s",arq5);
-    contDePalavras[4] = insertfromf(raiz,arq5);
-    relevancia[4] = (double)QuantiaPalavra(raiz,palavra) / contDePalavras[4];
-    printf("Relevancia, multiplicada por 100.000: %f\n\n", relevancia[4]*100000 );
-    if ( relevancia [4] != 0 ) citacao ++;
-    libera_ArvLLRB(raiz);
-    raiz = cria_ArvLLRB();
-    citacao = log10(5/citacao);
-    printf ("\n1: %s, %f\n2: %s, %f\n3: %s, %f\n4: %s, %f\n5: %s, %f\n",
-    arq1, relevancia[0] * citacao, arq2, relevancia[1] * citacao,arq3, (relevancia[2] * citacao),arq4, relevancia[3] * citacao,arq5, relevancia[4] * citacao);
+    while(opt!=87){
+
+        printf("Menu\n");
+        printf("1-Inserir Nodo na árvore.\n");
+        printf("2-Imprimir árvore.\n");
+        printf("3-Contar nós da árvore\n");
+        printf("4-Buscar a maior relevância duma palavra.\n");		//ALTERAÇÃO
+        printf("5-Palavras mais usadas num arquivo.\n");
+        printf("6- Busca ocorrências de uma palavra. \n");
+		printf("87-Sair.\n");
+
+        scanf("%d",&opt);
+        switch(opt){
+            case 1 :
+            printf("digite o nome do arquivo : \n");
+                scanf("%s",file_name);
+                insertfromf(raiz,file_name);
+                break;
+            case 2 :
+                emOrdem_ArvLLRB(raiz,0);
+                break;
+            case 3 :
+            	t = totalNO_ArvLLRB(raiz);
+            	printf("%d",t);
+              //  int vetorzao[t];
+                scanf("%d", &n);
+                encherVetor(raiz,0,vetor);
+                consulta_ArvNum(raiz,t,n,vetor);
+                break;
+            case 4:
+                libera_ArvLLRB(raiz);
+                raiz = cria_ArvLLRB();
+				printf ("Digite a palavra que quer: \n");
+            	scanf ("%s", &palavra);
+            	printf("digite o nome dos 5 arquivos : \n");
+            	citacao = 0;
+                scanf("%s",arq1);
+                contDePalavras[0] = insertfromf(raiz,arq1);
+                relevancia[0] = (double)QuantiaPalavra(raiz,palavra) / contDePalavras[0];
+                printf("Relevancia, multiplicada por 100.000: %f\n\n", relevancia[0]*100000 );
+                if ( relevancia [0] != 0 ) citacao ++;
+                libera_ArvLLRB(raiz);
+                raiz = cria_ArvLLRB();
+                scanf("%s",arq2);
+                contDePalavras[1] = insertfromf(raiz,arq2);
+                relevancia[1] = (double)QuantiaPalavra(raiz,palavra) / contDePalavras[1];
+                printf("Relevancia, multiplicada por 100.000: %f\n\n", relevancia[1]*100000 );
+                if ( relevancia [1] != 0 ) citacao ++;
+                libera_ArvLLRB(raiz);
+				raiz = cria_ArvLLRB();
+                scanf("%s",arq3);
+                contDePalavras[2] = insertfromf(raiz,arq3);
+                relevancia[2] = (double)QuantiaPalavra(raiz,palavra) / contDePalavras[2];
+                printf("Relevancia, multiplicada por 100.000: %f\n\n", relevancia[2]*100000 );
+                if ( relevancia [2] != 0 ) citacao ++;
+                libera_ArvLLRB(raiz);
+                raiz = cria_ArvLLRB();
+                scanf("%s",arq4);
+				contDePalavras[3] = insertfromf(raiz,arq4);
+				relevancia[3] = (double)QuantiaPalavra(raiz,palavra) / contDePalavras[3];
+                printf("Relevancia, multiplicada por 100.000: %f\n\n", relevancia[3]*100000 );
+                if ( relevancia [3] != 0 ) citacao ++;
+                libera_ArvLLRB(raiz);
+                raiz = cria_ArvLLRB();
+                scanf("%s",arq5);
+            	contDePalavras[4] = insertfromf(raiz,arq5);
+            	relevancia[4] = (double)QuantiaPalavra(raiz,palavra) / contDePalavras[4];
+                printf("Relevancia, multiplicada por 100.000: %f\n\n", relevancia[4]*100000 );
+                if ( relevancia [4] != 0 ) citacao ++;
+                libera_ArvLLRB(raiz);
+                raiz = cria_ArvLLRB();
+				citacao = log10(5/citacao);
+    			printf ("\n1: %s, %f\n2: %s, %f\n3: %s, %f\n4: %s, %f\n5: %s, %f\n",
+				arq1, relevancia[0] * citacao, arq2, relevancia[1] * citacao,arq3, (relevancia[2] * citacao),arq4, relevancia[3] * citacao,arq5, relevancia[4] * citacao);
+				break;
+	/*		case 5:
+				libera_ArvLLRB(raiz);
+                raiz = cria_ArvLLRB();
+				printf("Quantas palavras?");
+				scanf("%d", &numpalavras);
+				printf("Qual o arquivo que quer usar?");
+				scanf("%s",file_name);
+            	insertfromf(raiz,file_name);
+				rankingpalavras(raiz,numpalavras);
+				break;
+    */      case 6 :
+    			printf("Entre com a palavra: \n");
+    			scanf("%s",&palavra);
+    			printf("%d",QuantiaPalavra(raiz,palavra));
+			case 87 :
+                exit(0);
+            default:
+            	printf("errou");
+            //    scanf("%s",palavra);
+            //    insere_ArvLLRB(raiz,palavra);
+            //    break;
+        }
+
+
+    }
+  //  for(i=0; i< N; i++){
+        //insere_ArvLLRB(raiz,val[i]);
+//    emOrdem_ArvLLRB(raiz,0);
+
+    printf("\n\n==========================\n\n");
+   // remove_ArvLLRB(raiz,15);
+   // emOrdem_ArvLLRB(raiz,0);
+    //printf("\n\n==========================\n\n");
+   // remove_ArvLLRB(raiz,50);
+   // emOrdem_ArvLLRB(raiz,0);
+
+    return 0;
+//}
 }
+
+/*
+Teste do seg ex:
+
+4
+Delano
+101.txt
+103.txt
+104.txt
+1013.txt
+1014.txt
+
+*/
